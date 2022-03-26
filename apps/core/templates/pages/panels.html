@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Panels
+{% endblock title %}
+
+
+{% block content %}
+
+    <h1>Welcome to Django ORM</h1>
+
+        <p>This is Jyan Pico's for Kickstart Coding's Hiomework 2!
+
+        <p>Learn about our top projects below:</p>
+
+<div class="row">
+
+{% for panel in dboard_panels %}
+
+<div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"> {{ panel.github_username }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ panel.repo_name }}</h6>
+            <p class="card-text">Github description placeholder</p>
+            <a href="details/{{ panel.id }}/" class="card-link">More info</a>
+        </div>
+    </div>
+</div>
+        
+{% endfor %}
+
+{% endblock content %}
+
+
