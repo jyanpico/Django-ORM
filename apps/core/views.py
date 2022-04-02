@@ -15,25 +15,21 @@ def view_panels(request):
 
 def panel_details(request, panel_id):
     panel = DashboardPanel.objects.get(id=panel_id)
-
-    url = "https://api.github.com/repos/" + panel.github_username + "/" + panel.repo_name + "/languages"
-    response = requests.get(url)
-
-    # chart = pygal.Pie()
-
-    # for repo_dict in repos:
-    #     value = repo_dict["size"]
-    #     label = repo_dict["name"]
-    #     chart.add(label, value)
-    # chart_svg_as_datauri = chart.render_data_uri()
-    # context = {
-    #     "panel": panel,
-    #     "rendered_chart_svg": chart_svg_as_datauri,
-    # }
     
-    print('------------------------------------- panel detail testing')
+    language_url = "https://api.github.com/repos/" + panel.github_username + "/" + panel.repo_name + "/languages"
+    response = requests.get(language_url)
+    repos = response.json()
+
+    chart = pygal.Pie()
+    for repo in repos:
+        value = repos[repo]
+        label = repo
+        chart.add(label, value)
+    chart_svg_as_datauri = chart.render_data_uri()
     context = {
         "panel": panel,
-        "raw_data": response.json(),
+        'github_repo': repos,
+        "rendered_chart_svg_as_datauri": chart_svg_as_datauri,
     }
+
     return render(request, "pages/details.html", context)
