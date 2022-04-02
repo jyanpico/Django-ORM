@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 
 {% block title %}
-    My Site - About
+    Detail Page
 {% endblock title %}
 
+<div class="row">
 
 {% block content %}
 
-<h1>{{ panel.github_username }}</h1>
-<p>{{ panel.repo_name }}</p>
-{{ rendered_chart_svg|safe }}
+
+
+<p> {{ raw_data }} </p>
+
+
+
+    <div class="col-md-8">
+        <embed type="image/svg+xml" src="{{ rendered_chart_svg_as_datauri|safe }}" />
+    </div>
+
+    <div class="col-md-4">
+        <h1>{{ panel.github_username}}</h1>
+            <p> {{panel.repo_name }} </p>
+            <a href="{{ panel.url }}" class="btn btn-primary" role="button">Click here for more info</a>
+        </div>
+    </div>
 
 
 {% endblock content %}
