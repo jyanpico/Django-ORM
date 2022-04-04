@@ -8,11 +8,8 @@
 {% block content %}
 
     <h1>Welcome to Django ORM</h1>
-
         <p>This is Jyan Pico's for Kickstart Coding's Homework 2!
-
         <p>Learn about our top projects below:</p>
-
 <div class="row">
 
 {% for panel in dboard %}
@@ -20,10 +17,9 @@
 <div class="col-md-3">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <!-- having troubles with django templating -->
             <h5 class="card-title"> {{ panel.github_username }}</h5>
             <p class="card-text"> {{ panel.repo_name }}</p>
-            <!-- {{ panel.render_chart|safe }} -->
+            <p> {{panel.repo_description }} </p>
             <a href="details/{{ panel.id }}/" class="card-link">More info</a>
         </div>
     </div>

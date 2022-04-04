@@ -14,10 +14,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
 
     <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -33,8 +29,7 @@
 <nav class="navbar navbar-expand-md">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <!-- Add your logo here!  <img src="" /> -->
-            My Site
+            Django ORM HW
         </a>
 
         <button
@@ -91,24 +86,23 @@
 
 
 {% block main %}
-    <div class="container pt-2">
-
-      {# Enable Django's "messages" system #}
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-          {% endfor %}
-      {% endif %}
-
-      {% block content %}
-        <p>Use this as a way to quick start any new project.</p>
-      {% endblock content %}
-
-    </div>
+<div class="container pt-2">
+    
+    {# Enable Django's "messages" system #}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    
+    {% block content %}
+    <p>Use this as a way to quick start any new project.</p>
+    {% endblock content %}
+    
+</div>
 {% endblock main %}
 
-
-      <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-  </body>
+<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+</body>
 </html>
 

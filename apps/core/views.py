@@ -15,12 +15,17 @@ def view_panels(request):
 
 def panel_details(request, panel_id):
     panel = DashboardPanel.objects.get(id=panel_id)
-    
     language_url = "https://api.github.com/repos/" + panel.github_username + "/" + panel.repo_name + "/languages"
     response = requests.get(language_url)
     repos = response.json()
+    
+    if panel.panel_type == "piechart":
+        chart = pygal.Pie()
+    elif panel.panel_type == "barchart":
+        chart = pygal.Bar()
+    elif panel.panel_type == "linechart":
+        chart = pygal.Line()
 
-    chart = pygal.Pie()
     for repo in repos:
         value = repos[repo]
         label = repo
@@ -31,5 +36,4 @@ def panel_details(request, panel_id):
         'github_repo': repos,
         "rendered_chart_svg_as_datauri": chart_svg_as_datauri,
     }
-
     return render(request, "pages/details.html", context)
